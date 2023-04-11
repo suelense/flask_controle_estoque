@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} Controle de Estoques {% endblock %}
+
+{% block content %}
+
+<img src="./static/img/logo.png" alt="Logo Querido Cheiro" width="200">
+<h1>Controle de Estoque</h1>
+<button><a href="pages/cadastro.html">Cadastar Produto</a></button>
+<br><br>
+<button><a href="update.html">Entrada e Saída</a></button>
+<br><br>
+<button><a href="/consulta">Consulta</a></button>
+
+<form action="/" method="POST"> 
+    <div>
+        <label for="codigo">Código</label><br>
+        <input type="number" name="codigo" id="codigo" placeholder="Código do Produto"><br><br>
+    </div>
+    <div>
+        <label for="descricao">Descrição</label><br>
+        <input type="text" name="descricao" id="descricao" placeholder="Descrição do Produto"><br><br>
+    </div>
+    <div>
+        <label for="quantidade">Quantidade</label><br>
+        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade"><br><br>
+    </div>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+</form>
+<section id="products">
+    <div>
+        <div>
+            <h4>Lista de Produtos</h4>
+            {% for product in data %}
+            <div>
+                <div id="content-products">
+                    <span>Produto : </span> &nbsp; {{product.0}}
+                    <span>Descrição :</span> &nbsp; {{product.1}}
+                    <span>Quantidade :</span> &nbsp; {{product.2}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% for product in data %}
+    {{product.1}}
+    <form action='delete/product/{{product.0}}' method="POST">
+        <button>DELETAR</button>
+    </form>
+    <a href="/update/product/{{product.0}}">Atualizar</a>
+    {% else %}
+    NAO TEM PRODUTOS CADASTRADOS
+
+{% endfor%}
+{% endblock %}

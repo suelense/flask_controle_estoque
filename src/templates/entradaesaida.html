@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada e Saída</title>
+</head>
+<body>
+    <img src="/img/logo.png" alt="Logo Querido Cheiro" width="200">
+    <h1>Entrada e Saída de Produtos</h1>
+    
+    <form>
+        <div>
+        <!-- Opção para entrada ou saída do estoque -->
+            <input type="radio" name="movimentacao" value="entrada"> Entrada
+            <input type="radio" name="movimentacao" value="saida"> Saída
+            <br><br>
+        </div>
+        <div>
+        <div>
+            <label for="data">Data: </label><br>
+            <input type="date" name="data" id="data"><br><br>
+        </div>
+        <!-- Lista de seleção de produto -->
+            <label for="codigo">Selecione o produto:</label><br>
+            <select id="codigo" name="codigo">
+                <option selected>Selecione o código</option>
+                <option value="{{product.0}}">{{product.1}}</option>
+            </select>
+            <br><br>
+        </div>
+        <div>
+            <label for="quantidade">Quantidade</label><br>
+            <input type="number" name="quantidade" id="quantidade" onchange="valida_quantidade()" placeholder="Quantidade"><br><br>
+        </div>
+        <div>
+            <button type="button" id="botaosalvar" onclick="salva_movimentacao()">Salvar</button>
+        </div>
+    </form>
+    <!-- Botao para a tela inicial -->
+    <button><a href="/index.html">Início</a></button>
+</body>
+<link rel="stylesheet" href="/style.css">
+<script src="/script.js"></script>
+</html>

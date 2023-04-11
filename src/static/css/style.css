@@ -1,0 +1,19 @@
+/* layout */
+h1{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+    background-color: rgba(160, 225, 215, 0.742);
+    text-align: center;
+}
+form {
+    text-align: center;
+}
+input, button, select {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+button {
+    width: 150px;
+    cursor: pointer;
+}
