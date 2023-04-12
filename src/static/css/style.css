@@ -17,3 +17,11 @@ button {
     width: 150px;
     cursor: pointer;
 }
+.tabelaConsulta {
+    background-color: white;
+    margin: auto;
+}
+.botaotabela {
+    width: 100px;
+    height: 5px;
+}

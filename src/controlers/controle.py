@@ -57,6 +57,12 @@ class UpdateProdutoController(MethodView):
             return redirect("/")
 
 class ConsultaController(MethodView):
-    def consulta():
-        return render_template('templates/consulta.html')
+    def get(self):
+        with mysql.cursor() as cur:
+            cur.execute("SELECT * FROM produtos")
+            data = cur.fetchall()
+        return render_template('public/consulta.html', data = data)
     
+def Update(codigo):
+    codigo = request.form['codigo']
+    return codigo

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3> Relação de Produtos em estoque</h3>
+<section id="products">
+    <div>
+        <table border="1" class="tabelaConsulta">
+            <tr>
+                <td> &nbsp; &nbsp; &nbsp; Produto &nbsp; &nbsp; &nbsp;</td>
+                <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Descrição &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; </td>
+                <td> &nbsp; &nbsp; Quantidade &nbsp;  &nbsp;</td>
+                <td> &nbsp; &nbsp; &nbsp; Editar produto &nbsp; &nbsp; &nbsp;</td>
+                <td> &nbsp; &nbsp; &nbsp; Deletar produto &nbsp; &nbsp; &nbsp;</td>
+            </tr>
+            <div>
+                {% for product in data %}
+                <div>
+                    <div id="content-products">
+                        <tr>
+                            <td>{{product.0}}</td>
+                            <td>{{product.1}}</td>
+                            <td>{{product.2}}</td>
+                            <td>
+                                <a href="/update/product/{{product.0}}">Editar</a>
+                            </td>
+                            <td>
+                                <a href="/delete/product/{{product.0}}">Deletar</a>
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </table>
+    </div>
+</section>
+
+{% endblock%}

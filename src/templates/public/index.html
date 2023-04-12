@@ -3,8 +3,6 @@
 {% block title %} Controle de Estoques {% endblock %}
 
 {% block content %}
-
-<img src="./static/img/logo.png" alt="Logo Querido Cheiro" width="200">
 <h1>Controle de Estoque</h1>
 <button><a href="pages/cadastro.html">Cadastar Produto</a></button>
 <br><br>
@@ -29,30 +27,11 @@
         <button type="submit">Cadastrar</button>
     </div>
 </form>
-<section id="products">
-    <div>
-        <div>
-            <h4>Lista de Produtos</h4>
-            {% for product in data %}
-            <div>
-                <div id="content-products">
-                    <span>Produto : </span> &nbsp; {{product.0}}
-                    <span>Descrição :</span> &nbsp; {{product.1}}
-                    <span>Quantidade :</span> &nbsp; {{product.2}}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% for product in data %}
-    {{product.1}}
-    <form action='delete/product/{{product.0}}' method="POST">
-        <button>DELETAR</button>
-    </form>
-    <a href="/update/product/{{product.0}}">Atualizar</a>
-    {% else %}
-    NAO TEM PRODUTOS CADASTRADOS
+<form>
+    <label>Digite o código do produto que seja alterar:</label><br>
+    <input type="number" placeholder="Código do produto" >
+    <button><a href="/update/product/">Atualizar</a></button>
+</form>
 
-{% endfor%}
+
 {% endblock %}
