@@ -1,16 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %} Controle de Estoques {% endblock %}
+{% block title %} Cadatro de Produtos {% endblock %}
 
 {% block content %}
 <h1>Controle de Estoque</h1>
-<button><a href="pages/cadastro.html">Cadastar Produto</a></button>
-<br><br>
-<button><a href="update.html">Entrada e Saída</a></button>
-<br><br>
-<button><a href="/consulta">Consulta</a></button>
-
-<form action="/" method="POST"> 
+<form action="/cadastro" method="POST"> 
     <div>
         <label for="codigo">Código</label><br>
         <input type="number" name="codigo" id="codigo" placeholder="Código do Produto"><br><br>
@@ -27,11 +21,6 @@
         <button type="submit">Cadastrar</button>
     </div>
 </form>
-<form>
-    <label>Digite o código do produto que seja alterar:</label><br>
-    <input type="number" placeholder="Código do produto" >
-    <button><a href="/update/product/">Atualizar</a></button>
-</form>
-
-
+<br><br><br>
+<button><a href="/">Página inicial</a></button>
 {% endblock %}

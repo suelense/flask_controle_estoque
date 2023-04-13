@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrada e Saída</title>
-</head>
-<body>
-    <img src="/img/logo.png" alt="Logo Querido Cheiro" width="200">
+{% extends "base.html" %}
+
+{% block content %}
     <h1>Entrada e Saída de Produtos</h1>
     
     <form>
@@ -40,7 +33,4 @@
     </form>
     <!-- Botao para a tela inicial -->
     <button><a href="/index.html">Início</a></button>
-</body>
-<link rel="stylesheet" href="/style.css">
-<script src="/script.js"></script>
-</html>
+{% endblock %}
