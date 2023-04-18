@@ -2,14 +2,17 @@
 
 {% block content %}
 <br><br>
-<form>
-    <label>Digite o código do produto:</label><br>
-    <input type="number" placeholder="Código"><br>
-    <button>Pesquisar</button>
+<form action="/relatorio" method="GET">
+    <h1>Consulta por produto</h1>
+    <br>
+    <label for="codigo">Informe o código do produto:</label><br>
+    <input type="number" name="codigo" id="codigo" placeholder="Código">
+    </select>
+    <button href="/relatorio">Pesquisar</button>
 </form>
 
 <br><br>
-<button><a href="/relatorio">Ver todos os produtos</a></button>
+<button><a href="/relatorio?codigo=*">Ver todos os produtos</a></button>
 <br>
 <br>
 <button><a href="/">Página inicial</a></button>

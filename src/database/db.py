@@ -10,17 +10,6 @@ mysql = pymysql.connect(
     database='controle_de_estoque'
     )
     
-class DeleteProduto(MethodView):
-    def post(self, codigo):
-         with mysql.cursor()as cur:
-            try:
-                cur.execute("DELETE FROM produtos WHERE codigo =%s", (codigo,))
-                cur.connection.commit()
-                flash('Produto deletado com sucesso!', 'success')
-            except:
-                flash('Erro na exclusão', 'error')
-            return redirect('/relatorio')
-
 class UpdateProduto(MethodView):
     def get(self, codigo):
         with mysql.cursor()as cur:
@@ -31,11 +20,10 @@ class UpdateProduto(MethodView):
     def post(self, codigo):
         produtocodigo = request.form['codigo']
         descricao = request.form['descricao']
-        quantidade = request.form['quantidade']
 
         with mysql.cursor()as cur:
             try:
-                cur.execute("UPDATE produtos SET codigo =%s, descricao =%s, quantidade =%s WHERE codigo =%s", (produtocodigo, descricao, quantidade, codigo))
+                cur.execute("UPDATE produtos SET codigo =%s, descricao =%s WHERE codigo =%s", (produtocodigo, descricao, codigo))
                 cur.connection.commit()
                 flash('Produto atualizado com sucesso!', 'success')
             except:
@@ -44,17 +32,24 @@ class UpdateProduto(MethodView):
 
 class Relatorio(MethodView):
     def get(self):
-        with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM produtos")
-            data = cur.fetchall()
+        codigo = request.args['codigo']
+        if codigo == '*':
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM produtos")
+                data = cur.fetchall()
+        else:
+            with mysql.cursor() as cur:
+                cur.execute("SELECT * FROM produtos WHERE codigo =%s", (codigo))
+                data = cur.fetchall()
         return render_template('relatorio.html', data = data)
 
 class Consulta(MethodView):
     def get(self):
-        with mysql.cursor() as cur:
-            cur.execute("SELECT * FROM produtos")
-            data = cur.fetchall()
-        return render_template('consulta.html', data = data)
+        return render_template('consulta.html')
+    
+class Movimento(MethodView):
+    def get(self):
+        return render_template('movimento.html')
     
 class Cadastro(MethodView):    
     def get(self):
@@ -83,4 +78,31 @@ class Index(MethodView):
     
 class EntradaSaida(MethodView):
     def get(self):
-        return render_template('entradasaida.html')
+        codigo = request.args['codigo']
+        with mysql.cursor()as cur:
+            cur.execute("SELECT * FROM produtos WHERE codigo =%s", (codigo))
+            product = cur.fetchone()
+            return render_template('entradasaida.html', product = product)
+
+    def post(self):
+        codigo = request.args['codigo']
+        opcao = request.args['opcao']
+        quant = request.form['quantidade']
+        if opcao == 'entrada':
+            with mysql.cursor()as cur:
+                try:
+                    cur.execute("UPDATE produtos SET quantidade = quantidade + %s WHERE codigo =%s", (quant, codigo))
+                    cur.connection.commit()
+                    flash('Produto atualizado com sucesso!', 'success')
+                except:
+                    flash('Erro na atualização', 'error')
+                return redirect("/relatorio?codigo=10")
+        else:
+            with mysql.cursor()as cur:
+                try:
+                    cur.execute("UPDATE produtos SET quantidade = quantidade - %s WHERE codigo =%s", (quant, codigo))
+                    cur.connection.commit()
+                    flash('Produto atualizado com sucesso!', 'success')
+                except:
+                    flash('Erro na atualização', 'error')
+                return redirect("/relatorio?codigo=['codigo']")

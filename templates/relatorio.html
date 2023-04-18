@@ -2,7 +2,7 @@
 
 {% block content %}
 <h3> Relação de Produtos em estoque</h3>
-<section id="products">
+<section>
     <table border="1" class="tabelaConsulta">
         <tr>
             <td> &nbsp; &nbsp; &nbsp; Produto &nbsp; &nbsp; &nbsp;</td>
@@ -11,7 +11,7 @@
             <td> &nbsp; &nbsp; &nbsp; Editar produto &nbsp; &nbsp; &nbsp;</td>
         </tr>
         <div>
-            {% for product in data %}
+            {% for product in data %}         
             <div id="content-products">
                 <tr>
                     <td>{{product.0}}</td>

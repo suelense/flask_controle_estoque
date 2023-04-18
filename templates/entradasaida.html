@@ -1,36 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Entrada e Saída de Produtos</h1>
-    
-    <form>
-        <div>
-        <!-- Opção para entrada ou saída do estoque -->
-            <input type="radio" name="movimentacao" value="entrada"> Entrada
-            <input type="radio" name="movimentacao" value="saida"> Saída
-            <br><br>
-        </div>
-        <div>
-        <div>
-            <label for="data">Data: </label><br>
-            <input type="date" name="data" id="data"><br><br>
-        </div>
-        <!-- Lista de seleção de produto -->
-            <label for="codigo">Selecione o produto:</label><br>
-            <select id="codigo" name="codigo">
-                <option selected>Selecione o código</option>
-                <option value="{{product.0}}">{{product.1}}</option>
-            </select>
-            <br><br>
-        </div>
-        <div>
-            <label for="quantidade">Quantidade</label><br>
-            <input type="number" name="quantidade" id="quantidade" onchange="valida_quantidade()" placeholder="Quantidade"><br><br>
-        </div>
-        <div>
-            <button type="button" id="botaosalvar" onclick="salva_movimentacao()">Salvar</button>
-        </div>
-    </form>
-    <!-- Botao para a tela inicial -->
-    <button><a href="/index.html">Início</a></button>
+<h1>Entrada e Saída de produtos</h1>
+<br>
+<form method="POST">
+    <div>
+        <table border="1" class="tabelaConsulta">
+            <tr>
+                <td> &nbsp; &nbsp; &nbsp; Produto &nbsp; &nbsp; &nbsp;</td>
+                <td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Descrição &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; </td>
+                <td> &nbsp; &nbsp; Quantidade &nbsp;  &nbsp;</td>
+            </tr>
+            <tr>
+                <td>{{product.0}}</td>
+                <td>{{product.1}}</td>
+                <td>{{product.2}}</td>
+            </tr>
+        </table>
+        <br><br>
+    <div>
+        <label for="quantidade">Quantidade(Entrada/Saida)</label><br>
+        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade"><br><br>
+    </div>
+    <div>
+        <button type="submit">Atualizar</button>
+    </div>
+</form>
+<br><br><br><br>
+<button><a href="/">Página inicial</a></button>
+</form>
+
 {% endblock %}
